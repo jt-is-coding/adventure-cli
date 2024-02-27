@@ -40,4 +40,20 @@ class Adventurer
     puts "1. Busy Bee Keeper"
     puts "2. Polly-Picks-Your-Pocket"
     puts "3. Sludgemancer"
+    job_choice = gets.downcase.chomp
+    loop {
+    if job_choice == "1" || job_choice == "one" || job_choice == "busy bee keeper"
+      self.job = job_choice
+      break
+    elsif job_choice == "2" || job_choice == "two" || job_choice == "polly-picks-your-pocket"
+      self.job = job_choice
+      break
+    elsifif job_choice == "3" || job_choice == "three" || job_choice == "sludgemancer"
+      self.job = job_choice
+      break
+    else
+      puts "Sorry, that job is taken."
+    }
+  end
+end
   
