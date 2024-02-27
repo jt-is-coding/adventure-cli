@@ -19,7 +19,7 @@ class Adventurer
     puts "3. Exit"
     choice = gets.downcase.chomp
       if choice == "1" || choice == "one" || choice == "create a new adventurer"
-        #run create_adventurer method here
+        create_adventurer
       elsif choice == "2" || choice == "two" || choice == "load my adventurer"
         #run load_adventurer
       elsif choice == "3" || choice == "three" || choice == "exit"
@@ -53,6 +53,7 @@ class Adventurer
       break
     else
       puts "Sorry, that job is taken."
+    end
     }
   end
 end
