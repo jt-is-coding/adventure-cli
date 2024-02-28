@@ -153,7 +153,27 @@ class Adventurer
           end
       }
     elsif self.job == "Sludgemancer"
-      puts "Sludgemancer start!"
+      puts "You are #{self.name} the #{self.job}."
+      puts "Your home is known only as the Sludge Pit. A place where the sun's light never shines, and people live strange little lives."
+      puts "..."
+      puts "And by people I mean *you*. No one else lives here. I mean, seriously, the Sludge Pit? Who else but a Sludgemancer would live here?"
+      puts "And Sludgemancy? Out of all the types of magic it's got to be the worst. What good is a class of magic that focuses on producing sludges???"
+      puts "Sure, it was worth a laugh, but now every time you sneeze you accidentally fire off a sludge spell, adding more muck to the Sludge Pit."
+      loop{
+        puts "Are you sure you want to be a Sludgemancer?"
+        puts "1. No, this sounds awful. Please get me out of here."
+        puts "2. Yes. I'm oddly intrigued by all this sludge talk. I need to see where this is going."
+        sludgemancer_choice = gets.downcase.chomp
+        if sludgemancer_choice == "1"
+          puts "Okay, cool, let's get out of here."
+          puts "\n"
+          break
+        elsif sludgemancer_choice == "2"
+          #START HERE START HERE START HERE START HERE START HERE
+        else
+          puts "What was that? I'll ask again:"
+        end
+        }
     end
   end
 end
