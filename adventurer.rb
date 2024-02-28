@@ -15,10 +15,10 @@ class Adventurer
   def set_job=(player_job)
     if player_job == "1" || player_job == "one" || player_job == "bumbling knight"
       player_job = "Bumbling Knight"
-      NewAdventurer.job = "the #{player_job.upcase}"
+      self.job = "the #{player_job.upcase}"
     elsif player_job == "2" || player_job == "two" || player_job == "sludgemancer"
       player_job = "Sludgemancer"
-      NewAdventurer.job = "the #{player_job.upcase}"
+      self.job = "the #{player_job.upcase}"
     end
   end
 
@@ -40,8 +40,6 @@ class Adventurer
     end
   end
     
-  NewAdventurer = Adventurer.new
-
   def adventure_start
     #puts "\n"
     puts "Hiya! This is AdventureCLI."
@@ -49,7 +47,7 @@ class Adventurer
     user_name = gets.capitalize.chomp
     puts "Okay, cool. Thanks!"
     loop {
-    if NewAdventurer.bumbling_knight_name == nil || NewAdventurer.sludgemancer_name == nil 
+    if self.bumbling_knight_name == nil || self.sludgemancer_name == nil 
       puts "Select an option!"
       puts "1. Create an Adventurer"
       puts "2. Load my Adventurer"
@@ -57,13 +55,12 @@ class Adventurer
       choice = gets.downcase.chomp
         if choice == "1" || choice == "one" || choice == "create a new adventurer"
           create_adventurer
-          #break
         elsif choice == "2" || choice == "two" || choice == "load my adventurer"
-          if NewAdventurer.name == nil
+          if self.name == nil
             puts "There's no Adventurer to load, buddy."
             puts "\n"
           else
-            puts "Welcome back, #{NewAdventurer.name} #{NewAdventurer.job}!"
+            puts "Welcome back, #{self.name} #{self.job}!"
             beginning
          end
           #break
@@ -75,8 +72,8 @@ class Adventurer
         end
     else
       puts "\nWow! You finished both intense, lengthy campaigns!
-Thank you for your courage, #{NewAdventurer.bumbling_knight_name}! Your quest for the missing scepter was definitely very grueling!!! 
-And thank you, #{NewAdventurer.sludgemancer_name}, for your bravery! Truly there is no better Sludgemancer than you!!!
+Thank you for your courage, #{self.bumbling_knight_name}! Your quest for the missing scepter was definitely very grueling!!! 
+And thank you, #{self.sludgemancer_name}, for your bravery! Truly there is no better Sludgemancer than you!!!
 And of course a big thanks to you, #{user_name}, for playing all the way through! See ya later!"
       break
     end
@@ -86,17 +83,17 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
   def create_adventurer
     puts "A new Adventurer, huh? Sure thing."
     puts "What are we callin this Adventurer?"
-    NewAdventurer.set_name=(gets.chomp)
-    puts "#{NewAdventurer.name}, got it."
+    self.set_name=(gets.chomp)
+    puts "#{self.name}, got it."
     loop {
-      puts "Here are some available jobs for #{NewAdventurer.name}."
+      puts "Here are some available jobs for #{self.name}."
       puts "1. Bumbling Knight"
       puts "2. Sludgemancer"
-      NewAdventurer.set_job=(gets.downcase.chomp)
-      if NewAdventurer.job == "the BUMBLING KNIGHT"
+      self.set_job=(gets.downcase.chomp)
+      if self.job == "the BUMBLING KNIGHT"
         beginning
         break
-      elsif NewAdventurer.job == "the SLUDGEMANCER"
+      elsif self.job == "the SLUDGEMANCER"
         beginning
         break
       else
@@ -106,12 +103,12 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
   end
 
   def beginning
-    if NewAdventurer.job == "the BUMBLING KNIGHT"
+    if self.job == "the BUMBLING KNIGHT"
       pass = false
       guards = false
       fired = false
       puts "\n"
-      puts "You are #{NewAdventurer.name} #{NewAdventurer.job}."
+      puts "You are #{self.name} #{self.job}."
       puts "The Queen of Bustleburg has been disatisfied with your performance lately."
       puts "Between sleeping on the job and failure to accomplish even the simplest of tasks, your job is at risk."
       puts "The Queen is giving you one last chance to deliver. You are to find her misplaced Royal Scepter."
@@ -190,18 +187,18 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
               puts "Your tale impresses the Queen greatly, and your job is safe for another day!"
               puts "\nHey, you did it! Nice!"
               fired = true
-              NewAdventurer.bumbling_knight_name = NewAdventurer.name
+              self.bumbling_knight_name = self.name
             end
           else
            puts "Wait, I didn't catch that. Lemme ask again:"
           end
       }
 
-    elsif NewAdventurer.job == "the SLUDGEMANCER"
+    elsif self.job == "the SLUDGEMANCER"
       give_up = false
       push_ups = 0
       puts "\n"
-      puts "You are #{NewAdventurer.name} #{NewAdventurer.job}."
+      puts "You are #{self.name} #{self.job}."
       puts "Your home is a vile place known only as the Sludge Pit. A place where the sun's light never shines, and people live strange little lives."
       puts "..."
       puts "And by people I mean *you*. No one else lives here. I mean, seriously, the Sludge Pit? Who else but a Sludgemancer would live here?"
@@ -221,10 +218,10 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
             break
           elsif sludgemancer_choice == "2"
             puts "Ugh, FINE. We'll do the dang Sludgemancer stuff."
-            puts "You are #{NewAdventurer.name} #{NewAdventurer.job}."
+            puts "You are #{self.name} #{self.job}."
             puts "Your home is a vile place known only as the Sludge Pit. A place where the sun's light never shines, and people live strange little lives."
             puts "The annual Sludgemancy Muck Mountain Challenge is coming up, a contest to see which Sludgemancer can produce the largest pile of mud."
-            rival = NewAdventurer.name.reverse
+            rival = self.name.reverse
             puts "You have never won. Your rival, #{rival}, is undefeated. But maybe this year will be different..."
             puts "Any ideas on how you're gonna pull out a big win this year?"
             puts "1. Train hard, devote body and mind entirely to the sludge. This will surely lead to victory."
@@ -239,7 +236,7 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
               puts "The day of the Challenge arrives, and your hard work paid off! #{rival}'s sludge pile was miniscule compared to yours."
               puts "After all these years, you finally managed to wipe that smug grin from #{rival}'s face, and you bask in the glory of a hard-fought victory."
               puts "\nNice! You sure showed that jerk, #{rival}!"
-              NewAdventurer.sludgemancer_name = NewAdventurer.name
+              self.sludgemancer_name = self.name
               give_up = true
               break
             elsif sludgemancer_choice2 == "2"
@@ -250,7 +247,7 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
               puts "*Sigh*, if only you had put in the effort. You'd probably feel a little better about your victory."
               puts "Oh well! A win is a win in the Sludge Pit, I guess."
               puts "\nNice! You sure showed that jerk, #{rival}!"
-              NewAdventurer.sludgemancer_name = NewAdventurer.name
+              self.sludgemancer_name = self.name
               give_up = true
               break
             elsif sludgemancer_choice2 == "3"
