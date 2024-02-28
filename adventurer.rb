@@ -21,14 +21,35 @@ class Adventurer
       NewAdventurer.job = "the #{player_job.upcase}"
     end
   end
+
+  def train
+    push_ups = 0
+    puts "You decide to train."
+    while push_ups < 10 
+      puts "Do a 'PUSH-UP'!"
+      input = gets.chomp
+      if input == "PUSH-UP"
+        push_ups = push_ups + 1
+      elsif input == "push-up"
+        puts "No, no, with FEELING. Now again:"
+      elsif input == "fast forward"
+        break
+      else
+        puts "Huh? I said:"
+      end
+    end
+  end
     
   NewAdventurer = Adventurer.new
 
   def adventure_start
     #puts "\n"
     puts "Hiya! This is AdventureCLI."
+    puts "Real quick, what's your name?"
+    user_name = gets.capitalize.chomp
+    puts "Okay, cool. Thanks!"
     loop {
-    if NewAdventurer.bumbling_knight_name == nil #|| NewAdventurer.sludgemancer_name == nil 
+    if NewAdventurer.bumbling_knight_name == nil || NewAdventurer.sludgemancer_name == nil 
       puts "Select an option!"
       puts "1. Create an Adventurer"
       puts "2. Load my Adventurer"
@@ -53,7 +74,10 @@ class Adventurer
           puts "Maybe you didn't hear me? I said:"
         end
     else
-      puts "Thanks for playing #{NewAdventurer.bumbling_knight_name}!"
+      puts "\nWow! You finished both intense, lengthy campaigns!
+Thank you for your courage, #{NewAdventurer.bumbling_knight_name}! Your quest for the missing scepter was definitely very grueling!!! 
+And thank you, #{NewAdventurer.sludgemancer_name}, for your bravery! Truly there is no better Sludgemancer than you!!!
+And of course a big thanks to you, #{user_name}, for playing all the way through! See ya later!"
       break
     end
     }
@@ -95,7 +119,6 @@ class Adventurer
       puts "Or else."
       loop {
         if fired == true
-          puts "\n"
           break
         end
         puts "Where will you search?"
@@ -154,9 +177,7 @@ class Adventurer
             "You saunter to your familiar sleeping quarters."
             if guards == false
               puts "Upon laying your eyes on your trusty bed, you decide that a short nap couldn't possibly hurt..."
-              puts "..."
-              puts "..."
-              puts "..."
+              puts "...\n...\n..."
               puts "It did, however, as you were fired immediately upon waking up, having slept the rest of the day away."
               puts "Give it another go, I bet you'll get it next time."
               fired = true
@@ -165,9 +186,9 @@ class Adventurer
               puts "But the knight you sent away at the Queen's living chambers is here as well, and you'd rather not get caught napping on the job."
               puts "Oh, and hey look, it's the Queen's Royal Scepter, over there in the corner. Looks like someone had been polishing it."
               puts "You swipe the scepter and return to the Queen."
-              puts "Deciding it best to remind the Queen that she'd given the scepter to another knight for polishing, you hand it to her with pride."
-              puts "The Queen is pleased with your hard work, and you go on to work another day."
-              puts "Congrats, you win!"
+              puts "Deciding it best *not* to tell the Queen that she simply forgot she'd given it to another knight for polishing, you regale her with a made-up tale of how you recovered the scepter."
+              puts "Your tale impresses the Queen greatly, and your job is safe for another day!"
+              puts "\nHey, you did it! Nice!"
               fired = true
               NewAdventurer.bumbling_knight_name = NewAdventurer.name
             end
@@ -185,7 +206,7 @@ class Adventurer
       puts "..."
       puts "And by people I mean *you*. No one else lives here. I mean, seriously, the Sludge Pit? Who else but a Sludgemancer would live here?"
       puts "And Sludgemancy? Out of all the types of magic it's got to be the worst. What good is a class of magic that focuses on producing sludges???"
-      puts "Sure the idea was a little funny, but now every time you sneeze you accidentally fire off a sludge spell, adding more muck to the Sludge Pit."
+      puts "Sure the idea was a little funny, but now every time you sneeze you accidentally fire off a sludge spell, adding more muck to the Sludge Pit. It's just kinda unpleasant."
       loop{
         if give_up == true
           break
@@ -211,27 +232,30 @@ class Adventurer
             puts "3. Give up."
             sludgemancer_choice2 = gets.chomp
             if sludgemancer_choice2 == "1"
-              puts "You decide to train."
-              while push_ups < 10 
-                puts "Do a 'PUSH-UP'!"
-                input = gets.chomp
-                if input == "PUSH-UP"
-                  push_ups = push_ups + 1
-                elsif input == "push-up"
-                  puts "No, no, with FEELING. Now again:"
-                elsif input == "I quit"
-                  break
-                else
-                  puts "Huh? I said:"
-                end
-              end
+              train
+              puts "After 10 days of vigorous physical activity, your Sludgemancy somehow improved."
+              puts "...\n...\n..."
+              puts "Not entirely sure what the correlation is there...but hey, can't argue with results, right?"
+              puts "The day of the Challenge arrives, and your hard work paid off! #{rival}'s sludge pile was miniscule compared to yours."
+              puts "After all these years, you finally managed to wipe that smug grin from #{rival}'s face, and you bask in the glory of a hard-fought victory."
+              puts "\nNice! You sure showed that jerk, #{rival}!"
+              NewAdventurer.sludgemancer_name = NewAdventurer.name
+              give_up = true
+              break
             elsif sludgemancer_choice2 == "2"
-              #break
+              puts "You spend the time before the Challenge scheming and plotting, rather than honing your craft."
+              puts "...\n...\n..."
+              puts "And it paid off! You decided it would be easiest if you slashed #{rival}'s tires the night before the Challenge."
+              puts "Everyone knows you cheated though, so you feel a little hollow."
+              puts "*Sigh*, if only you had put in the effort. You'd probably feel a little better about your victory."
+              puts "Oh well! A win is a win in the Sludge Pit, I guess."
+              puts "\nNice! You sure showed that jerk, #{rival}!"
+              NewAdventurer.sludgemancer_name = NewAdventurer.name
+              give_up = true
+              break
             elsif sludgemancer_choice2 == "3"
               puts "You give up, who cares about winning the dumb Sludgemancy Muck Mountain Challenge anyway..."
-              puts "..."
-              puts "..."
-              puts "..."
+              puts "...\n...\n..."
               puts "Well, you do. Just a little. Mostly because you want to wipe that smug grin off of #{rival}'s face."
               puts "Better luck next time!"
               puts "\n"
