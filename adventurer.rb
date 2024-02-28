@@ -2,9 +2,25 @@ class Adventurer
   attr_accessor :name, :job
 
   def initialize
-    @name = name
-    @job = job
+    self.name = name
+    self.job = job
   end
+
+  def set_name=(player_name)
+    @name = "#{player_name.upcase}"
+  end
+
+  def set_job=(player_job)
+    if player_job == "1" || player_job == "one" || player_job == "bumbling knight"
+      player_job = "Bumbling Knight"
+      NewAdventurer.job = "the #{player_job.upcase}"
+    elsif player_job == "2" || player_job == "two" || player_job == "sludgemancer"
+      player_job = "Sludgemancer"
+      NewAdventurer.job = "the #{player_job.upcase}"
+    end
+  end
+    
+  NewAdventurer = Adventurer.new
 
   def adventure_start
     #puts "\n"
@@ -19,10 +35,11 @@ class Adventurer
         create_adventurer
         #break
       elsif choice == "2" || choice == "two" || choice == "load my adventurer"
-        if self.name == nil
+        if NewAdventurer.name == nil
           puts "There's no Adventurer to load, buddy."
+          puts "\n"
         else
-          puts "Welcome back, #{self.name} the #{self.job}!"
+          puts "Welcome back, #{NewAdventurer.name} #{NewAdventurer.job}!"
           beginning
         end
         #break
@@ -38,19 +55,17 @@ class Adventurer
   def create_adventurer
     puts "A new Adventurer, huh? Sure thing."
     puts "What are we callin this Adventurer?"
-    self.name = gets.chomp
-    puts "#{self.name}, got it."
+    NewAdventurer.set_name=(gets.chomp)
+    puts "#{NewAdventurer.name}, got it."
     loop {
-      puts "Here are some available jobs for #{self.name}."
+      puts "Here are some available jobs for #{NewAdventurer.name}."
       puts "1. Bumbling Knight"
       puts "2. Sludgemancer"
-      job_choice = gets.downcase.chomp
-      if job_choice == "1" || job_choice == "one" || job_choice == "bumbling knight"
-        self.job = "Bumbling Knight"
+      NewAdventurer.set_job=(gets.downcase.chomp)
+      if NewAdventurer.job == "the BUMBLING KNIGHT"
         beginning
         break
-      elsif job_choice == "2" || job_choice == "two" || job_choice == "sludgemancer"
-        self.job = "Sludgemancer"
+      elsif NewAdventurer.job == "the SLUDGEMANCER"
         beginning
         break
       else
@@ -60,12 +75,12 @@ class Adventurer
   end
 
   def beginning
-    if self.job == "Bumbling Knight"
+    if NewAdventurer.job == "the BUMBLING KNIGHT"
       pass = false
       guards = false
       fired = false
       puts "\n"
-      puts "You are #{self.name} the #{self.job}."
+      puts "You are #{NewAdventurer.name} #{NewAdventurer.job}."
       puts "The Queen of Bustleburg has been disatisfied with your performance lately."
       puts "Between sleeping on the job and failure to accomplish even the simplest of tasks, your job is at risk."
       puts "The Queen is giving you one last chance to deliver. You are to find her misplaced Royal Scepter."
@@ -152,13 +167,15 @@ class Adventurer
            puts "Wait, I didn't catch that. Lemme ask again:"
           end
       }
-    elsif self.job == "Sludgemancer"
-      puts "You are #{self.name} the #{self.job}."
+
+    elsif NewAdventurer.job == "the SLUDGEMANCER"
+      puts "\n"
+      puts "You are #{NewAdventurer.name} #{NewAdventurer.job}."
       puts "Your home is known only as the Sludge Pit. A place where the sun's light never shines, and people live strange little lives."
       puts "..."
       puts "And by people I mean *you*. No one else lives here. I mean, seriously, the Sludge Pit? Who else but a Sludgemancer would live here?"
       puts "And Sludgemancy? Out of all the types of magic it's got to be the worst. What good is a class of magic that focuses on producing sludges???"
-      puts "Sure, it was worth a laugh, but now every time you sneeze you accidentally fire off a sludge spell, adding more muck to the Sludge Pit."
+      puts "Sure the idea was a little funny, but now every time you sneeze you accidentally fire off a sludge spell, adding more muck to the Sludge Pit."
       loop{
         puts "Are you sure you want to be a Sludgemancer?"
         puts "1. No, this sounds awful. Please get me out of here."
