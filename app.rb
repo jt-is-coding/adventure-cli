@@ -1,4 +1,4 @@
-require "./adventurer"
+require "./adventure"
 
-adventurer = Adventurer.new
+adventurer = Adventure.new
 adventurer.adventure_start
