@@ -1,11 +1,26 @@
 class Adventurer
   attr_accessor :name, :job, :bumbling_knight_name, :sludgemancer_name
 
-  def initialize
-    self.name = name
-    self.job = job
-    @bumbling_knight_name = nil
-    @sludgemancer_name = nil
+  def create_adventurer
+    puts "A new Adventurer, huh? Sure thing."
+    puts "What are we callin this Adventurer?"
+    self.set_name=(gets.chomp)
+    puts "#{self.name}, got it."
+    loop {
+      puts "Here are some available jobs for #{self.name}."
+      puts "1. Bumbling Knight"
+      puts "2. Sludgemancer"
+      self.set_job=(gets.downcase.chomp)
+      if self.job == "the BUMBLING KNIGHT"
+        beginning
+        break
+      elsif self.job == "the SLUDGEMANCER"
+        beginning
+        break
+      else
+        puts "Sorry, that job is taken."
+      end
+    }
   end
 
   def set_name=(player_name)
@@ -39,69 +54,7 @@ class Adventurer
       end
     end
   end
-    
-  def adventure_start
-    #puts "\n"
-    puts "Hiya! This is AdventureCLI."
-    puts "Real quick, what's your name?"
-    user_name = gets.capitalize.chomp
-    puts "Okay, cool. Thanks!"
-    loop {
-    if self.bumbling_knight_name == nil || self.sludgemancer_name == nil 
-      puts "Select an option!"
-      puts "1. Create an Adventurer"
-      puts "2. Load my Adventurer"
-      puts "3. Exit"
-      choice = gets.downcase.chomp
-        if choice == "1" || choice == "one" || choice == "create a new adventurer"
-          create_adventurer
-        elsif choice == "2" || choice == "two" || choice == "load my adventurer"
-          if self.name == nil
-            puts "There's no Adventurer to load, buddy."
-            puts "\n"
-          else
-            puts "Welcome back, #{self.name} #{self.job}!"
-            beginning
-         end
-          #break
-        elsif choice == "3" || choice == "three" || choice == "exit"
-         puts "Sure. See ya later!"
-          break
-        else
-          puts "Maybe you didn't hear me? I said:"
-        end
-    else
-      puts "\nWow! You finished both intense, lengthy campaigns!
-Thank you for your courage, #{self.bumbling_knight_name}! Your quest for the missing scepter was definitely very grueling!!! 
-And thank you, #{self.sludgemancer_name}, for your bravery! Truly there is no better Sludgemancer than you!!!
-And of course a big thanks to you, #{user_name}, for playing all the way through! See ya later!"
-      break
-    end
-    }
-  end
-
-  def create_adventurer
-    puts "A new Adventurer, huh? Sure thing."
-    puts "What are we callin this Adventurer?"
-    self.set_name=(gets.chomp)
-    puts "#{self.name}, got it."
-    loop {
-      puts "Here are some available jobs for #{self.name}."
-      puts "1. Bumbling Knight"
-      puts "2. Sludgemancer"
-      self.set_job=(gets.downcase.chomp)
-      if self.job == "the BUMBLING KNIGHT"
-        beginning
-        break
-      elsif self.job == "the SLUDGEMANCER"
-        beginning
-        break
-      else
-        puts "Sorry, that job is taken."
-      end
-    }
-  end
-
+  
   def beginning
     if self.job == "the BUMBLING KNIGHT"
       pass = false
@@ -268,5 +221,44 @@ And of course a big thanks to you, #{user_name}, for playing all the way through
         }
     end
   end
+  
+  def adventure_start
+    puts "Hiya! This is AdventureCLI."
+    puts "Real quick, what's your name?"
+    user_name = gets.capitalize.chomp
+    puts "Okay, cool. Thanks!"
+    loop {
+    if self.bumbling_knight_name == nil || self.sludgemancer_name == nil 
+      puts "Select an option!"
+      puts "1. Create an Adventurer"
+      puts "2. Load my Adventurer"
+      puts "3. Exit"
+      choice = gets.downcase.chomp
+        if choice == "1" || choice == "one" || choice == "create a new adventurer"
+          create_adventurer
+        elsif choice == "2" || choice == "two" || choice == "load my adventurer"
+          if self.name == nil
+            puts "There's no Adventurer to load, buddy."
+            puts "\n"
+          else
+            puts "Welcome back, #{self.name} #{self.job}!"
+            beginning
+         end
+        elsif choice == "3" || choice == "three" || choice == "exit"
+         puts "Sure. See ya later!"
+          break
+        else
+          puts "Maybe you didn't hear me? I said:"
+        end
+    else
+      puts "\nWow! You finished both intense, lengthy campaigns!
+Thank you for your courage, #{self.bumbling_knight_name}! Your quest for the missing scepter was definitely very grueling!!! 
+And thank you, #{self.sludgemancer_name}, for your bravery! Truly there is no better Sludgemancer than you!!!
+And of course a big thanks to you, #{user_name}, for playing all the way through! See ya later!"
+      break
+    end
+    }
+  end
+
 end
   
