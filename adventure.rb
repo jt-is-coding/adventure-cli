@@ -259,9 +259,11 @@ class Adventure
           puts "Maybe you didn't hear me? I said:"
         end
     else
-      puts "\nWow! You finished both intense, lengthy campaigns!
-Thank you for your courage, #{successful_adventurers.at(0)} and #{successful_adventurers.at(1)}!
-And of course thank you #{user_name}, for playing all the way through! Have a nice day!"
+      puts "\nWow! You finished both *very* intense, *incredibly* lengthy campaigns!"
+      self.successful_adventurers.each { |details|
+        puts "Thank you for your bravery, #{details}!"
+      }
+      puts "And of course, thank you #{user_name} for playing all the way through! Have a wonderful day!:)"
       break
     end
     }
